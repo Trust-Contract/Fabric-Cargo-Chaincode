@@ -77,8 +77,8 @@
 	**********************************************************/
  func (t *SmartContract) createContract(stub shim.ChaincodeStubInterface, args []string) peer.Response {
 
-	 if len(args) != 8 {
-		 return shim.Error("Incorrect number of arguments. Expecting 8")
+	 if len(args) != 9 {
+		 return shim.Error("Incorrect number of arguments. Expecting 9")
 	 }
 
 	 cm, _ := strconv.Atoi(args[3])
@@ -218,7 +218,7 @@
  func (t *SmartContract) completeContract(stub shim.ChaincodeStubInterface, args []string) peer.Response {
 
 	 if len(args) != 1 {
-		 return shim.Error("Incorrect number of arguments. Expecting 2")
+		 return shim.Error("Incorrect number of arguments. Expecting 1")
 	 }
 
 
@@ -267,12 +267,12 @@
 //peer chaincode query -n cargo-app -c '{"Args":["queryMylist", "CARGOS20180606"]}' -C mychannel
 func (t *SmartContract) queryMylist(stub shim.ChaincodeStubInterface, args []string) peer.Response {
 
-	if len(args) != 1 {
-	return shim.Error("Incorrect number of arguments. Expecting 1")
-	}
+ if len(args) != 1 {
+   return shim.Error("Incorrect number of arguments. Expecting 1")
+ }
 
-	fmt.Println("query Mylist v3")
-	queryString := fmt.Sprintf("{\"selector\":{\"$or\":[{\"Registrant\":\"%s\"},{\"Driver\":\"%s\"},{\"Recipient\":\"%s\"}]}}", args[0],args[0],args[0])
+fmt.Println("query Mylist v3")
+ queryString := fmt.Sprintf("{\"selector\":{\"$or\":[{\"Registrant\":\"%s\"},{\"Driver\":\"%s\"},{\"Recipient\":\"%s\"}]}}", args[0],args[0],args[0])
 
  	queryResults, err := getQueryResultForQueryString(stub, queryString)
 
